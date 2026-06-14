@@ -1,0 +1,9 @@
+# Dataset (too large for GitHub - request from author)
+dataset/
+
+# Jupyter checkpoints (auto-generated)
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
