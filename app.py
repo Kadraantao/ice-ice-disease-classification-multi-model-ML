@@ -192,27 +192,6 @@ with st.sidebar:
 
 
 # ============================================================
-# Benchmark performance heatmap (collapsed by default)
-# ============================================================
-with st.expander("📈 Training Benchmark — F1-Score Heatmap", expanded=False):
-    st.markdown("Test-set F1-Score for every (classifier × preprocessing) combination from the training run:")
-    results_df = pd.DataFrame(ALL_RESULTS)
-    matrix = results_df.pivot(index='Classifier', columns='Configuration', values='F1-Score')
-    matrix = matrix[CONFIGS]
-
-    fig, ax = plt.subplots(figsize=(9, 4))
-    sns.heatmap(matrix, annot=True, fmt='.1f', cmap='RdYlGn',
-                vmin=max(matrix.values.min() - 5, 0), vmax=100,
-                cbar_kws={'label': 'F1-Score (%)'},
-                annot_kws={'size': 11, 'weight': 'bold'},
-                linewidths=0.5, linecolor='white', ax=ax)
-    ax.set_xlabel('Preprocessing Configuration', fontweight='bold')
-    ax.set_ylabel('Classifier', fontweight='bold')
-    plt.tight_layout()
-    st.pyplot(fig)
-
-
-# ============================================================
 # File uploader
 # ============================================================
 st.header("📤 Upload an Image")
