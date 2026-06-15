@@ -142,16 +142,14 @@ st.markdown(
 )
 
 # Top-line metrics row (KPI cards)
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("Classifiers", len(CLASSIFIERS))
 with col2:
     st.metric("Configurations", len(CONFIGS))
 with col3:
     st.metric("Total Combinations", len(CLASSIFIERS) * len(CONFIGS))
-with col4:
-    st.metric("Best F1-Score", f"{BEST_F1:.1f}%",
-              delta=f"{BEST_CLF} + {CFG_LABELS[BEST_CFG]}")
+
 
 st.markdown("---")
 
