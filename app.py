@@ -158,36 +158,25 @@ st.markdown("---")
 # Sidebar
 # ============================================================
 with st.sidebar:
-    st.header("📊 Benchmark Results")
-    st.markdown(
-        f"**Best combination identified during training:**\n"
-        f"- Classifier: **{BEST_CLF}**\n"
-        f"- Preprocessing: **{CFG_LABELS[BEST_CFG]}**\n"
-        f"- F1-Score: **{BEST_F1:.1f}%**\n"
-        f"- Accuracy: **{BEST_ACC:.1f}%**"
-    )
+    st.header("🌿 About This Project")
 
-    st.markdown("---")
-    st.subheader("🏆 Top 5 Combinations")
-    top5 = sorted(ALL_RESULTS, key=lambda r: r['F1-Score'], reverse=True)[:5]
-    top5_df = pd.DataFrame(top5)[['Classifier', 'Configuration', 'F1-Score']]
-    top5_df.columns = ['Classifier', 'Config', 'F1 (%)']
-    top5_df['F1 (%)'] = top5_df['F1 (%)'].apply(lambda x: f'{x:.1f}')
-    st.dataframe(top5_df, hide_index=True, use_container_width=True)
+    st.markdown("""
+    This web application classifies images of **Kappaphycus alvarezii**
+    as either **Healthy** or **Early Signs of Ice-Ice Disease** using
+    classical image processing and machine learning techniques.
 
-    st.markdown("---")
-    st.subheader("🚪 OOD Gate")
-    if ONECLASS_GATE is not None:
-        st.success("✅ One-Class SVM enabled")
-    else:
-        st.warning("⚠️ One-Class SVM not loaded")
+    **Pipeline:**
+    1. Image preprocessing (Median Filter and/or CLAHE)
+    2. HSV color histogram feature extraction (96 dimensions)
+    3. Machine learning classification
+       - Support Vector Machine (SVM)
+       - Random Forest (RF)
+       - K-Nearest Neighbors (KNN)
+       - Logistic Regression (LR)
 
-    st.markdown("---")
-    st.caption(
-        "**Pipeline**: Image → Preprocessing → HSV histogram (96-dim) → "
-        "Classifier → Prediction"
-    )
-
+    The system compares 16 classifier–preprocessing combinations and
+    identifies the best-performing model based on classification metrics.
+    """)
 
 # ============================================================
 # File uploader
